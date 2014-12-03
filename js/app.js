@@ -33,7 +33,16 @@ $(document).ready(function() {
                     },
                     map: map
                 });
+                obj.marker = marker;
 
+                google.maps.event.addListener(marker, 'click', function() {
+                    map.panTo(this.getPosition());
+                    var html = '<p>' + obj.cameralabel + '</p>';
+                    html +='<img src="' + obj.imageurl.url + '"/>';
+
+                    infoWindow.setContent(html);
+                    infoWindow.open(map, this);
+                });
             });
 
         });
