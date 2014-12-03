@@ -22,5 +22,20 @@ $(document).ready(function() {
         zoom: 12
 
     });
+    $.getJSON('http://data.seattle.gov/resource/65fc-btcc.json')
+        .done(function (data) {
+
+            data.forEach(function (obj) {
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: Number(obj.location.latitude),
+                        lng: Number(obj.location.longitude)
+                    },
+                    map: map
+                });
+
+            });
+
+        });
 
 });
